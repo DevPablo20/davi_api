@@ -1,0 +1,181 @@
+''' All the formatation delivers a simplified data containning upper string types values'''
+
+# Name formatation:
+def full_to_full(full_name):
+    """
+    Convert a full_name variable to an upper string.
+    :param full_name: variable from the JSON dictionary
+    :return: a string type upper full_name
+    """
+    new_full = full_name.strip().upper()
+    return new_full
+
+def full_name_to_first(full_name):
+    """
+    Convert a full_name vabiable to an upper first_name string
+    :param full_name: variable from the JSON dictionary
+    :return: a string type upper first_name
+    """
+    breaked = full_name.strip().split(' ')
+    first_name = breaked[0].upper()
+    return first_name
+
+def full_name_to_last(full_name):
+    """
+    Convert a full_name vabiable to an upper last_name string
+    :param full_name: variable from the JSON dictionary
+    :return: a string type upper last_name
+    """
+    breaked = full_name.strip().split(' ')
+    last_name = breaked[-1].upper()
+    return last_name
+
+# Cpf formatation:
+def cpf_formatation(cpf):
+    """
+    Convert an string or integrer to a string removing all symbols.
+    :param cpf: variable from the JSON dictionary
+    :return: a cleaned string type cpf
+    """
+    if isinstance(cpf, int):
+        if len(str(cpf)) < 11:
+            new_cpf = '0' + str(cpf)
+            return new_cpf
+        else:
+            return(cpf)
+    elif isinstance(cpf, str):
+        new_cpf = cpf.replace('.', '')
+        new_cpf = new_cpf.replace('-', '')
+        return new_cpf
+
+# Card Number Formatation:
+def card_formatation(card_number):
+    """
+    Convert full o last four numbers of a string or integrer variable to a string removing all symbols
+    :param card_number: variable from the JSON dictionary
+    :return: string type last four characters
+    """
+    if isinstance(card_number, int):
+        if card_number & 1000 < 10:
+            card_number = str(card_number)
+            return card_number
+        else:
+            card_number = str(card_number)
+            n = len(card_number)
+            return card_number[n-4:n]
+    elif isinstance(card_number, str):
+        card_number = card_number.strip()
+        card_number = card_number.replace('.', '')
+        card_number = card_number.replace('-', '')
+        n = len(card_number)
+        return card_number[n-4:n]
+
+# Month formatation:
+"""
+  english = {
+        'january': '01',
+        'february': '02',
+        'march': '03',
+        'april': '04',
+        'may': '05',
+        'june': '06',
+        'july': '07',
+        'august': '08',
+        'september': '09',
+        'october': '10',
+        'november': '11',
+        'december': '12'
+    }
+"""
+def month_formatation(expiration_mm):
+    """
+    Convert a string or integrer containing the month to a string type value
+    :param expiration_mm: variable from the JSON dictionary
+    :return: a string type value that represents the month in number representation
+    """
+    portuguese = {
+        'janeiro': '01',
+        'fevereiro': '02',
+        'março': '03',
+        'abril': '04',
+        'maio': '05',
+        'junho': '06',
+        'julho': '07',
+        'agosto': '08',
+        'setembro': '09',
+        'outubro': '10',
+        'novembro': '11',
+        'dezembro': '12'
+    }
+    if isinstance(expiration_mm, int):
+        expiration_mm = str(expiration_mm)
+        return expiration_mm
+    elif isinstance(expiration_mm, str):
+        if expiration_mm in portuguese.values():
+            return expiration_mm
+        elif expiration_mm in portuguese.keys():
+            return portuguese[expiration_mm][0:2]
+        elif expiration_mm in portuguese.keys():
+            return portuguese[expiration_mm]
+
+# Year formatation
+def year_formatation(expiration_yyyy):
+    """
+    Convert a string or integrer value containing the year to a string type value
+    :param expiration_yyyy: variable from the JSON dictionary
+    :return: a string type value that represents the year in number representation
+    """
+    if isinstance(expiration_yyyy, int):
+        expiration_yyyy = str(expiration_yyyy)
+        n = len(expiration_yyyy)
+        return expiration_yyyy[n-2:n]
+    elif isinstance(expiration_yyyy, str):
+        n = len(expiration_yyyy)
+        return expiration_yyyy[n-2:n]
+
+# Card Brand Formatation
+def card_brand_formatation(card_brand):
+    """
+    Convert a string value containing card's brand to a cleaned string.
+    :param card_brand: variable from the JSON dictionary
+    :return: a string type value the represents the card's brand.
+    """
+    card_brand = card_brand.strip()
+    card_brand = card_brand.replace(' ', '')
+    card_brand = card_brand.upper()
+    return card_brand
+
+# Security Code formatation
+def security_code_formatation(security_code):
+    """
+    Convert a string or integrer value to a 3 digits string.
+    :param security_code: variable from the JSON dictionary
+    :return: a string type value the represents the security code
+    """
+    if isinstance(security_code, int):
+        security_code = str(security_code)
+        n = len(security_code)
+        if n == 1:
+            return '0' + '0' + security_code
+        elif n == 2:
+            return  '0' + security_code
+        elif n == 3:
+            return security_code
+        else:
+            return security_code[n - 3:n]
+    elif isinstance(security_code, str):
+        n = len(security_code)
+        if n == 1:
+            return '0' + '0' + security_code
+        elif n == 2:
+            return '0' + security_code
+        elif n == 3:
+            return security_code
+        else:
+            return security_code[n - 3:n]
+
+
+
+
+
+
