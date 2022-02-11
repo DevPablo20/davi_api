@@ -107,16 +107,30 @@ def month_formatation(expiration_mm):
         'novembro': '11',
         'dezembro': '12'
     }
+    portuguese_abbreviated = {
+        'jan': '01',
+        'fev': '02',
+        'mar': '03',
+        'abr': '04',
+        'mai': '05',
+        'jun': '06',
+        'jul': '07',
+        'ago': '08',
+        'set': '09',
+        'out': '10',
+        'nov': '11',
+        'dez': '12'
+    }
     if isinstance(expiration_mm, int):
         expiration_mm = str(expiration_mm)
         return expiration_mm
     elif isinstance(expiration_mm, str):
-        if expiration_mm in portuguese.values():
+        if expiration_mm.strip().lower() in portuguese.values():
             return expiration_mm
-        elif expiration_mm in portuguese.keys():
+        elif expiration_mm.strip().lower() in portuguese.keys():
             return portuguese[expiration_mm][0:2]
-        elif expiration_mm in portuguese.keys():
-            return portuguese[expiration_mm]
+        elif expiration_mm.strip().lower() in portuguese_abbreviated.keys():
+            return portuguese_abbreviated[expiration_mm]
 
 # Year formatation
 def year_formatation(expiration_yyyy):
@@ -142,6 +156,7 @@ def card_brand_formatation(card_brand):
     """
     card_brand = card_brand.strip()
     card_brand = card_brand.replace(' ', '')
+    card_brand = card_brand.replace('-', '')
     card_brand = card_brand.upper()
     return card_brand
 
