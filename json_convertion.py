@@ -1,6 +1,6 @@
 # all the import:
 import json
-from string_simplified_functions import full_to_full, security_code_formatation
+from string_simplified_functions import full_to_full, full_name_to_first, full_name_to_last, security_code_formatation
 from string_simplified_functions import year_formatation, month_formatation, cpf_formatation, card_formatation
 from string_simplified_functions import card_brand_formatation
 
@@ -18,6 +18,8 @@ for n in brute_data.values():
         break
     new_dict = {}
     full_name = full_to_full(n['full_name'])
+    first_name = full_name_to_first(n['full_name'])
+    last_name = full_name_to_last(n['full_name'])
     cpf = cpf_formatation(n['cpf'])
     card_number = card_formatation(n['card_number'])
     expiration_mm = month_formatation(n['expiration_mm'])
@@ -25,6 +27,8 @@ for n in brute_data.values():
     card_brand = card_brand_formatation(n['card_brand'])
     security_code = security_code_formatation(n['security_code'])
     new_dict['full_name'] = full_name
+    new_dict['first_name'] = first_name
+    new_dict['last_name'] = last_name
     new_dict['cpf'] = cpf
     new_dict['card_number'] = card_number
     new_dict['expiration__mm'] = expiration_mm
@@ -43,4 +47,5 @@ print(json_output)
 # exporting to a new json file
 with open('output_card.json', 'w') as output_card:
     output_card.write(json_output)
+
 

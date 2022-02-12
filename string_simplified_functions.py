@@ -37,16 +37,9 @@ def cpf_formatation(cpf):
     :param cpf: variable from the JSON dictionary
     :return: a cleaned string type cpf
     """
-    if isinstance(cpf, int):
-        if len(str(cpf)) < 11:
-            new_cpf = '0' + str(cpf)
-            return new_cpf
-        else:
-            return(cpf)
-    elif isinstance(cpf, str):
-        new_cpf = cpf.replace('.', '')
-        new_cpf = new_cpf.replace('-', '')
-        return new_cpf
+    new_cpf = cpf.replace('.', '')
+    new_cpf = new_cpf.replace('-', '')
+    return new_cpf
 
 # Card Number Formatation:
 def card_formatation(card_number):
@@ -55,20 +48,11 @@ def card_formatation(card_number):
     :param card_number: variable from the JSON dictionary
     :return: string type last four characters
     """
-    if isinstance(card_number, int):
-        if card_number & 1000 < 10:
-            card_number = str(card_number)
-            return card_number
-        else:
-            card_number = str(card_number)
-            n = len(card_number)
-            return card_number[n-4:n]
-    elif isinstance(card_number, str):
-        card_number = card_number.strip()
-        card_number = card_number.replace('.', '')
-        card_number = card_number.replace('-', '')
-        n = len(card_number)
-        return card_number[n-4:n]
+    card_number = card_number.strip()
+    card_number = card_number.replace('.', '')
+    card_number = card_number.replace('-', '')
+    n = len(card_number)
+    return card_number[n-4:n]
 
 # Month formatation:
 """
@@ -121,10 +105,7 @@ def month_formatation(expiration_mm):
         'nov': '11',
         'dez': '12'
     }
-    if isinstance(expiration_mm, int):
-        expiration_mm = str(expiration_mm)
-        return expiration_mm
-    elif isinstance(expiration_mm, str):
+    if isinstance(expiration_mm, str):
         if expiration_mm.strip().lower() in portuguese.values():
             return expiration_mm
         elif expiration_mm.strip().lower() in portuguese.keys():
@@ -139,13 +120,8 @@ def year_formatation(expiration_yyyy):
     :param expiration_yyyy: variable from the JSON dictionary
     :return: a string type value that represents the year in number representation
     """
-    if isinstance(expiration_yyyy, int):
-        expiration_yyyy = str(expiration_yyyy)
-        n = len(expiration_yyyy)
-        return expiration_yyyy[n-2:n]
-    elif isinstance(expiration_yyyy, str):
-        n = len(expiration_yyyy)
-        return expiration_yyyy[n-2:n]
+    n = len(expiration_yyyy)
+    return expiration_yyyy[n-2:n]
 
 # Card Brand Formatation
 def card_brand_formatation(card_brand):
@@ -167,27 +143,15 @@ def security_code_formatation(security_code):
     :param security_code: variable from the JSON dictionary
     :return: a string type value the represents the security code
     """
-    if isinstance(security_code, int):
-        security_code = str(security_code)
-        n = len(security_code)
-        if n == 1:
-            return '0' + '0' + security_code
-        elif n == 2:
-            return  '0' + security_code
-        elif n == 3:
-            return security_code
-        else:
-            return security_code[n - 3:n]
-    elif isinstance(security_code, str):
-        n = len(security_code)
-        if n == 1:
-            return '0' + '0' + security_code
-        elif n == 2:
-            return '0' + security_code
-        elif n == 3:
-            return security_code
-        else:
-            return security_code[n - 3:n]
+    n = len(security_code)
+    if n == 1:
+        return '0' + '0' + security_code
+    elif n == 2:
+        return '0' + security_code
+    elif n == 3:
+        return security_code
+    else:
+        return security_code[n - 3:n]
 
 
 
