@@ -55,22 +55,6 @@ def card_formatation(card_number):
     return card_number[n-4:n]
 
 # Month formatation:
-"""
-  english = {
-        'january': '01',
-        'february': '02',
-        'march': '03',
-        'april': '04',
-        'may': '05',
-        'june': '06',
-        'july': '07',
-        'august': '08',
-        'september': '09',
-        'october': '10',
-        'november': '11',
-        'december': '12'
-    }
-"""
 def month_formatation(expiration_mm):
     """
     Convert a string or integrer containing the month to a string type value

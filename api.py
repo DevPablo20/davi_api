@@ -21,18 +21,26 @@ def home():
 def about():
     return{"Data": "About"}
 
-# creating a get method that it can search for an user_id with a description and a default value (None)
-@app.get("/get-item/{item_id}")
-def get_item(item_id: int = Path(None, description="The Id of the item you want to view")):
-    return users_ids[item_id]
+# creating a get method that it can search for an card_id with a description and a default value (None)
+@app.get("/get-item/{card-id}")
+def get_item(card_id: int = Path(None, description="The Id of the item you want to view")):
+    return users_ids[card_id]
 
-# creating query method that searches for a person using his/her cpf
-@app.get("/get-by-name")
-def get_item(cpf: str):
+# creating a get method that searches for all the person's cards.
+@app.get("/get-by-cpf/{cpf}")
+def get_item(cpf: str = Path(None, description="The CPF of the person you want to view")):
+    person_cards = {}
     for ids in users_ids:
         if users_ids[ids]['cpf'] == cpf:
-            return users_ids[ids]
+            person_cards[ids] = users_ids[ids]
+    if person_cards != None:
+        return person_cards
+    else:
         return {"Data": "Not found"}
+
+#
+
+
 
 
 
